@@ -1,0 +1,34 @@
+{#
+Template engine: Jinja2
+
+Usage:
+
+    {{% series_buttons previous_url="/previous-article" previous_text="Previous Article Title" next_url="/next-article" next_text="Next Article Title" %}}
+
+    If there is no previous_url, it does not render the previous button.
+    If there is no next_url, it does not render the next button.
+
+    If there is no previous_text, it defaults to "Previous in series".
+    If there is no next_text, it defaults to "Next in series".
+
+    GitHub Repository: https://github.com/dacog/nikola-shortcodes
+
+#}
+
+<div class="row mb-4" id="series-buttons">
+    {% if  previous_url %}
+    <div class="{% if next_url %}col-md-6{% else %}col-md{% endif %} d-flex align-items-stretch">
+        <a href="{{ previous_url }}" class="btn btn-secondary w-100 d-flex justify-content-between align-items-center mb-2 series-button-prev" aria-label="Previous in series">
+            <i class="fa fa-arrow-left"></i> <span class="mx-auto">{{ previous_text|default("Previous in series") }}</span>
+        </a>
+    </div>
+    {% endif %}
+
+    {% if  next_url %}
+    <div class="{% if prev_url %}col-md-6{% else %}col-md{% endif %} d-flex align-items-stretch">
+        <a href="{{ next_url }}" class="btn btn-secondary w-100 d-flex justify-content-between align-items-center mb-2 series-button-next" aria-label="Next in series">
+            <span class="mx-auto">{{ next_text|default("Next in series") }}</span> <i class="fa fa-arrow-right"></i>
+        </a>
+    </div>
+    {% endif %}
+</div>
