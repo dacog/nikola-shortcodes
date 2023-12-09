@@ -1,0 +1,32 @@
+{#
+
+    infobox shortcode:
+    ------------------
+
+    This shortcode is used to display a infobox with a specific type of content.
+
+    Usage:
+    ------
+
+    {{% infobox type="book" text="This is a book infobox"  disclaimer="true" %}}
+
+#}
+
+<div class="alert alert-info d-flex align-items-center  ml-3" role="alert" style="width: auto; max-width: 50%;">
+    {% if type == "book" %}
+        <i class="fa fa-book fa-2x mr-3"></i>
+    {% elif type == "video" %}
+        <i class="fa fa-video fa-2x mr-3"></i>
+    {% elif type == "audio" %}
+        <i class="fa fa-headphones fa-2x mr-3"></i>
+    {% elif type == "link" %}
+        <i class="fa fa-link fa-2x mr-3"></i>
+    {% elif type == "quote" %}
+        <i class="fa fa-quote-left fa-2x mr-3"></i>
+    {% elif type == "image" %}
+        <i class="fa fa-image fa-2x mr-3"></i>
+    {% else %}
+        <i class="fa fa-sticky-note fa-2x mr-3"></i>
+    {% endif %}
+    <div>{{ text }} {% if disclaimer %}<a id='fnref:disclaimer' href='#fn:disclaimer'><i class="fa fa-info-circle"></i></a>{% endif %}</div>
+</div>
